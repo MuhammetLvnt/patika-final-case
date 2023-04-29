@@ -1,70 +1,169 @@
-# Getting Started with Create React App
+# REACT STARSHİP LİST APP
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Özet
 
-## Available Scripts
+- React.js, Context ve https://swapi.dev/api/ kullanılarak yazılmıştır. Yıldız gemilerinin listelendiği ve ayrıca yıldız gemilerini arayıp bulabileceğiniz bir listeleme uygulaması.
 
-In the project directory, you can run:
+### Kullanılan Teknolojiler
 
-### `npm start`
+- React.Js
+- TailwindCss
+- React-router-dom
+- React-icons
+- Hero-icons
+- headlessui
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Proje
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+React.Js de ilk önce projemizi oluşturuyoruz
 
-### `npm test`
+> npx create-react-app starship
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Daha sonrasında proje klasörümüzü açıyoruz
 
-### `npm run build`
+> cd starship
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Artık projemizi çalıştırabiliriz.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+> npm start
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Ben projeme başlamadan önce gerekli olacak olan paketlerimiz yükledim
 
-### `npm run eject`
+> npm i axios
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+> npm i react-router-dom
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Css için ben TailwindCss tercih ettim
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+> npm install -D tailwindcss
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+> npx tailwindcss init
 
-## Learn More
+İcon için
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+> npm install react-icons --save
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+ekstra olarak tailwindui'dan örnek bir component tasarımı aldım.
 
-### Code Splitting
+> npm install @headlessui/react @heroicons/react
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Paketlerimi kurduktan sonra tasarım yapmaya başladım.
 
-### Analyzing the Bundle Size
+### Anasayfa
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+![image](https://user-images.githubusercontent.com/79282877/235317001-c173002b-fe79-4f09-a334-0525715f3de9.png)
 
-### Making a Progressive Web App
+### StarshipList
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+![image](https://user-images.githubusercontent.com/79282877/235317157-f185a06b-e2ab-4aed-ae76-26a0ad408e89.png)
 
-### Advanced Configuration
+### StarshipList modal
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+![image](https://user-images.githubusercontent.com/79282877/235317192-fe5dd112-ab7f-4c5e-b063-bed2649c6ecd.png)
 
-### Deployment
+### Aşağıdaki resimde olduğu gibi yıldız gemisi arayabilirsiniz.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![Adsız](https://user-images.githubusercontent.com/79282877/235317306-7a678e95-de28-4640-8b30-bc0a77d82bd9.png)
 
-### `npm run build` fails to minify
+### Arama yaptıktan sonra detay sayfasına yönlendiriliyorsunuz.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+![image](https://user-images.githubusercontent.com/79282877/235317362-8565ef6d-c343-4a4c-a50d-12060dd13cb7.png)
+
+## Tasarım bittikten sonra apiden verileri alma işlemlerini yaptım.
+
+```
+function CardList() {
+  const [starshipsList, setStarshipsList] = useState([]);
+  const [starshipsData, setStarshipsData] = useState({});
+  const [page, setPage] = useState(1);
+
+  const newItemsRef = useRef(null);
+
+  useEffect(() => {
+    if (newItemsRef.current) {
+      newItemsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [starshipsList]);
+
+  useEffect(() => {
+    axios
+      .get(`https://swapi.dev/api/starships/?page=${page}`)
+      .then((res) => {
+        setStarshipsData(res.data);
+        if (page === 1) {
+
+          setStarshipsList(res.data.results);
+        } else {
+
+          setStarshipsList([...starshipsList, ...res.data.results]);
+        }
+      })
+      .catch((err) => console.log(err));
+  }, [page]);
+```
+
+- Yukarıdaki kodda apiden ilk önce gelen verileri aldım. Daha sonrasında "Daha fazla göster" özelliği için iki tane state tanımladım. Apiden 10'ar tane veri geliyordu. Yıldız gemilerinin hepsini gösterebilmek için için apiye istek atarken "page" özelliğinide ekledim. Gelen ilk verileri state kaydettikten sonra "Load more" butonuna basınca sayfa sayısı artıyor bu sayede diğer sayfanın verileri geliyor. Gelen verileride "if" koşulu kullanarak diğer verilerin üstüne yazdırdım. Bu sayede ilk verilerde kaybolmamış oldu ve yıldız gemilerinin hepsini gösterme fırsatım oldu.
+
+* "Load more" butonuna bastığımızda gelen verilere focuslanmak içinde 2. bir useEffect ve useRef kullandım. BU sayede kullanıcı butona bastığında gelen verilere daha çabuk görme imkanı sundu.
+
+## Search
+
+Search işlemi yaparken inputa değer girip entera bastıktan sonra gelmesi için form üzerinde submit olayı gerçekleştirdim. useNavigate ile de başka bir componente yönlendirip orda görüntülenmesi yaptım.
+
+```
+function Search() {
+
+  const { setSearch, setStarships, search } = useStarship();
+  const navigate = useNavigate();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await axios
+      .get(`https://swapi.dev/api/starships/?search=${search}`)
+      .then((res) => setStarships(res.data.results))
+      .catch((err) => console.log(err));
+    setSearch("");
+    navigate("/searchList");
+  };
+
+```
+
+- Burada verileri başka componentlerde kullanacağımdan dolayı context yapısını kullandım.
+
+```
+
+import { createContext, useState, useContext } from "react";
+
+const StarshipsContext = createContext();
+
+export const StarshipsContextProvider = ({ children }) => {
+  const [search, setSearch] = useState("");
+  const [starships, setStarships] = useState([]);
+
+  const values = {
+    setSearch,
+    setStarships,
+    search,
+    starships,
+  };
+  return (
+    <StarshipsContext.Provider value={values}>
+      {children}
+    </StarshipsContext.Provider>
+  );
+};
+export const useStarship = () => {
+  const context = useContext(StarshipsContext);
+
+  if (context === undefined) {
+    throw new Error("useStarship must be used withing a StarshipProvider");
+  }
+  return context;
+};
+
+
+```
+
+# Hazırlayan
+
+- Muhammet LEVENT
