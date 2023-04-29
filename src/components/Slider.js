@@ -55,7 +55,7 @@ function Slider() {
   return (
     <div
       ref={ref}
-      className="max-w-[1200px] h-[500px] w-full m-auto px-4 relative group"
+      className="max-w-[1200px] h-[500px] md:w-full w-[350px] md:m-auto px-4 relative group mr-5"
     >
       {slides?.map((slide, index) => (
         <div
@@ -65,7 +65,7 @@ function Slider() {
           }`}
         >
           <img src={slide.image} alt="" className="w-full h-full rounded-xl" />
-          <div className="absolute right-5 top-5 bg-white bg-opacity-50 py-2 px-4 rounded-xl">
+          <div className="absolute md:right-5 md:top-5 bg-white bg-opacity-50 py-2 px-4 rounded-xl top-0 right-0">
             <p className="text-xl font-medium font-bruno">{slide.caption}</p>
           </div>
         </div>

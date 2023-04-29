@@ -24,15 +24,15 @@ function CardModal({ cardModal, onClose, starshipList }) {
         onClick={onClose}
         className="flex items-center justify-center fixed inset-0 z-50"
       >
-        <div className="bg-black w-[1000px] h-[500px] p-6 rounded-lg flex justify-center items-center shadow-lg shadow-gray-300">
-          <div className="w-32">
+        <div className="bg-black md:w-[1000px] md:h-[500px] md:p-6 md:rounded-lg md:flex justify-center items-center md:shadow-lg md:shadow-gray-300 shadow-none">
+          <div className="md:w-32 md:shadow-none w-24 shadow-blue-800 shadow-md">
             <Image
               name={starshipList.name}
               className="object-scale-down w-full h-full"
             />
           </div>
 
-          <div className="text-white mx-5 my-5 w-full grid grid-cols-5 justify-items-center gap-3 rounded-lg border-t border-gray-500  shadow-xl shadow-[#00FF00]">
+          <div className="text-white md:mx-5 md:my-5 md:w-full md:grid md:grid-cols-5 md:justify-items-center md:gap-3 rounded-lg border-t border-gray-500  shadow-xl shadow-[#00FF00] space-y-5">
             <div className="flex flex-col justify-center items-center ml-5 font-bruno text-center">
               <div>Model</div>
               <div className="text-gray-500 text-sm">{starshipList.model}</div>
@@ -54,7 +54,7 @@ function CardModal({ cardModal, onClose, starshipList }) {
               </div>
 
               {starshipFilms?.map((film) => (
-                <div className="flex flex-col justify-center items-center">
+                <div className="flex flex-col justify-center items-center mb-3">
                   <h1 className="text-gray-500 text-sm">{film.title}</h1>
                   <Image className="h-14" name={film.title} />
                 </div>

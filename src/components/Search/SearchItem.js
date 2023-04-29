@@ -17,24 +17,24 @@ function SearchItem({ starship }) {
   }, [starship]);
 
   return (
-    <div className="flex">
+    <div className="md:flex mt-5">
       <div className="flex flex-col justify-center items-center max-w-sm mx-5 my-5">
         <Image
           name={starship.name}
-          className="shadow-xl shadow-gray-300 h-64 w-72 object-scale-down rounded-lg bg-cover bg-center"
+          className="shadow-xl shadow-gray-300 md:h-64 md:w-72 w-36 h-32 object-scale-down rounded-lg bg-cover bg-center"
         />
-        <div className="w-40 md:w-36 bg-black text-white -mt-10 shadow-lg shadow-[#FF0000] rounded-lg overflow-hidden">
-          <div className="py-2 text-center font-bold uppercase tracking-wide font-bruno">
+        <div className="md:w-36 w-24 text-xs bg-black text-white -mt-10 shadow-lg rounded-lg overflow-hidden">
+          <div className="py-2 text-center font-bold tracking-wide font-bruno">
             Starship Name
           </div>
           <div className="flex items-center justify-center py-2 px-3 bg-gray-400">
-            <h1 className="font-bruno text-xs text-white px-2 py-1 font-semibold rounded uppercase">
+            <h1 className="font-bruno text-xs text-white px-2 py-1 font-semibold rounded">
               {starship.name}
             </h1>
           </div>
         </div>
       </div>
-      <div className="text-white mx-5 my-5 w-[1100px] grid grid-cols-5 justify-items-center gap-3 rounded-lg border-t border-gray-500  shadow-xl shadow-[#0077FF]">
+      <div className="text-white md:mx-5 md:my-5 md:w-[1100px] md:grid md:grid-cols-5 md:justify-items-center md:gap-3 shadow-xl shadow-[#0077FF] mx-3 rounded-lg border-t border-gray-500">
         <div className="flex flex-col justify-center items-center ml-5 font-bruno">
           <div>Model</div>
           <div className="text-center text-gray-500">{starship.model}</div>

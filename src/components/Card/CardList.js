@@ -35,7 +35,7 @@ function CardList() {
 
   return (
     <div className="h-screen text-white">
-      <header className="flex flex-col justify-center items-center">
+      <header className="md:flex md:flex-col md:justify-center md:items-center flex flex-col justify-center items-center">
         <div className="text-white font-bruno uppercase text-xl font-semibold mt-5">
           Starship
         </div>
@@ -46,7 +46,7 @@ function CardList() {
           <Search />
         </div>
       </header>
-      <div className="grid grid-cols-5 gap-5 mx-5 mt-10">
+      <div className="md:grid md:grid-cols-5 md:gap-5 md::mx-5 md:mt-10 mt-5 space-y-8">
         {starshipsList?.map((starshipList, index) => (
           <CardItem starshipList={starshipList} key={index} />
         ))}

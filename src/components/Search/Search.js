@@ -38,7 +38,7 @@ function Search() {
               type="search"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="block border rounded-md w-72 h-7 p-4 pl-10 text-sm bg-black placeholder:font-bruno"
+              className="block border rounded-md md:w-72 h-7 p-4 pl-10 text-sm w-44 bg-black placeholder:font-bruno"
               placeholder="Search "
             />
             <FiSearch size={18} className="absolute bottom-[7px] ml-3" />
