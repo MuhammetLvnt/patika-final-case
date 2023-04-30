@@ -164,6 +164,8 @@ export const useStarship = () => {
 
 ```
 
+[Uygulama Linki](https://ml-final-case.netlify.app)
+
 # Hazırlayan
 
 - Muhammet LEVENT
