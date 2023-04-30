@@ -12,13 +12,11 @@ function Header() {
     <div>
       <div className="flex justify-between items-center container md:mx-auto text-white my-10 mx-5">
         <div className="md:w-1/3 flex justify-center items-center">
-          <Link to="/">
-            <img
-              className="w-auto h-8"
-              alt="logo"
-              src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254"
-            />
-          </Link>
+          <img
+            className="w-auto h-8"
+            alt="logo"
+            src="https://lumiere-a.akamaihd.net/v1/images/sw_logo_stacked_2x-52b4f6d33087_7ef430af.png?region=0,0,586,254"
+          />
         </div>
 
         <div className="md:w-1/3 flex justify-center items-center">

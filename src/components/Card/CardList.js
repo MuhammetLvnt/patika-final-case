@@ -9,14 +9,6 @@ function CardList() {
   const [starshipsData, setStarshipsData] = useState({});
   const [page, setPage] = useState(1);
 
-  const newItemsRef = useRef(null);
-  // yeni açılan verilerin focuslanması için eklendi
-  useEffect(() => {
-    if (newItemsRef.current) {
-      newItemsRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [starshipsList]);
-
   useEffect(() => {
     axios
       .get(`https://swapi.dev/api/starships/?page=${page}`)
@@ -32,6 +24,14 @@ function CardList() {
       })
       .catch((err) => console.log(err));
   }, [page]);
+
+  const newItemsRef = useRef(null);
+  // yeni açılan verilerin focuslanması için eklendi
+  useEffect(() => {
+    if (newItemsRef.current) {
+      newItemsRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [starshipsList]);
 
   return (
     <div className="h-screen text-white">

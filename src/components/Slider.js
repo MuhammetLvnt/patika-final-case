@@ -3,8 +3,6 @@ import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 
 function Slider() {
-  const ref = useRef();
-
   const slides = [
     {
       image:
@@ -14,7 +12,7 @@ function Slider() {
     {
       image:
         "https://lumiere-a.akamaihd.net/v1/images/ahsoka-slide-desktop_c52e516b.jpeg",
-      caption: "Ashoka",
+      caption: "Ahsoka",
     },
     {
       image:
@@ -32,6 +30,8 @@ function Slider() {
   const prevSlide = () => {
     setCurrentSlide(currentSlide === 0 ? slides.length - 1 : currentSlide - 1);
   };
+
+  const ref = useRef();
 
   useEffect(() => {
     const slides = ref.current.querySelectorAll(".slide");
